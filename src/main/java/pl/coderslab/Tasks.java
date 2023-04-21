@@ -10,18 +10,18 @@ public class Tasks {
     static  String[][] tasks() {
 
         Path path = Paths.get("tasks.csv");
-        Scanner tasksScanner = null;
+
         String[][] tasks = new String[1][];
 
         try{
-            tasksScanner = new Scanner(path);
-        } catch (IOException ex){
-            ex.printStackTrace();
-        }
+           Scanner tasksScanner = new Scanner(path);
         while (tasksScanner.hasNextLine()) {
             String str = tasksScanner.nextLine();
             tasks[tasks.length-1] = str.split(",");
             tasks = Arrays.copyOf(tasks,tasks.length+1);
+        }
+        } catch (IOException ex){
+            ex.printStackTrace();
         }
         tasks = Arrays.copyOf(tasks,tasks.length-1);
         return  tasks;
