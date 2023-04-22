@@ -1,10 +1,8 @@
 package pl.coderslab;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.util.Scanner;
 
-public class Circle_Cross {
+public class CircleCross {
     public static void main (String[] args ) {
 
         // inicjalizacja tablicy do gry
@@ -18,47 +16,14 @@ public class Circle_Cross {
         int signsInLine = Integer.parseInt(scLs.nextLine());
 
         String[][] tableArray = new String[tableSize][tableSize];
-        int index = 0;
+
         int counter =0;
 
 
-        //wygenerowanie nowej tablicy
-
-        for (int i = 0; i < tableSize; i++) {
-            for (int j = 0; j < tableSize; j++) {
-                if (tableSize * tableSize < 10) {
-                    tableArray[i][j] = Integer.toString(index);
-                } if (tableSize * tableSize > 10 && tableSize * tableSize <= 100) {
-                    if (index < 10) {
-                        tableArray[i][j] = "0" + index;
-                    } else {
-                        tableArray[i][j] = Integer.toString(index);
-                    }
-                } else if (tableSize * tableSize > 100 && tableSize * tableSize <= 1000) {
-                    if (index < 10) {
-                        tableArray[i][j] = "00" + index;
-                    } else if (index >= 10 && index < 100) {
-                        tableArray[i][j] = "0" +index;
-                    } else {
-                        tableArray[i][j] = Integer.toString(index);
-                    }
-                }
-                index++;
-            }
-            System.out.println();
-        }
-
-        // wyświetlenie nowej tablicy
-        for (int i = 0; i < tableSize; i++) {
-            for (int j = 0; j < tableSize; j++) {
-                System.out.print(tableArray[i][j] + " ");
-            }
-            System.out.println();
-        }
+        //wygenerowanie nowej tablicy i wyświetlenie nowej planszy
+        CircleCrossTabInit.tabInit(tableArray, tableSize);
 
         int playerIndex = 1;
-        int signInLineReach = 0;
-
         while (true) {
             System.out.println();
             Scanner sc = new Scanner(System.in);
@@ -80,11 +45,7 @@ public class Circle_Cross {
                 }
             }
 
-            if (playerIndex == 1) {
-                playerIndex = 2;
-            } else {
-                playerIndex = 1;
-            }
+
 
             for (int i = 0; i < tableSize; i++) {
                 for (int j = 0; j < tableSize; j++) {
@@ -145,26 +106,32 @@ public class Circle_Cross {
                                    counter = counter + 1;
                                }
                            }
-//                           System.out.println(Integer.toString(counter));
+
                            if (counter == signsInLine) {
                                System.exit(0);
                            }
                        }
-//                       counter = 1;
-//                       if (i <= tableArray.length-signsInLine && j <= tableArray[i].length-signsInLine) {
-//
-//                           for (int m = i; m < i + signsInLine-1; m++ ) {
-//                               if (tableArray[i][j].equals(tableArray[i][l+1])) {
-//                                   counter = counter + 1;
-//                               }
-//                           }
-////                           System.out.println(Integer.toString(counter));
-//                           if (counter == signsInLine) {
-//                               System.exit(0);
-//                           }
-//                       }
+                       counter = 1;
+                       if (i <= tableArray.length-signsInLine && j <= tableArray[i].length-signsInLine) {
+
+                           for (int m = 1; m < signsInLine; m++ ) {
+                               if (tableArray[i][j].equals(tableArray[i+m][j+m])) {
+                                   counter = counter + 1;
+                               }
+                           }
+
+                           if (counter == signsInLine) {
+                               System.out.println("The winner is Gracz: " + playerIndex);
+                               System.exit(0);
+                           }
+                       }
                    }
                 }
+            }
+            if (playerIndex == 1) {
+                playerIndex = 2;
+            } else {
+                playerIndex = 1;
             }
         }
     }
