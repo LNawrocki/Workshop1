@@ -45,8 +45,6 @@ public class CircleCross {
                 }
             }
 
-
-
             for (int i = 0; i < tableSize; i++) {
                 for (int j = 0; j < tableSize; j++) {
                     if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
@@ -77,7 +75,6 @@ public class CircleCross {
                     System.out.println();
                 }
 
-
                 int maxInLine = 0;
                 boolean test = true;
             for (int i = 0; i < tableSize; i++) {
@@ -95,9 +92,11 @@ public class CircleCross {
                            }
 //                           System.out.println(Integer.toString(counter));
                            if (counter == signsInLine) {
+                               System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
                                System.exit(0);
                            }
                        }
+                       //sprawdzanie poziomo
                        counter = 1;
                        if (j <= tableArray[i].length-signsInLine) {
 
@@ -108,9 +107,11 @@ public class CircleCross {
                            }
 
                            if (counter == signsInLine) {
+                               System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
                                System.exit(0);
                            }
                        }
+                       //sprawdzanie po skosie
                        counter = 1;
                        if (i <= tableArray.length-signsInLine && j <= tableArray[i].length-signsInLine) {
 
@@ -121,7 +122,7 @@ public class CircleCross {
                            }
 
                            if (counter == signsInLine) {
-                               System.out.println("The winner is Gracz: " + playerIndex);
+                               System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
                                System.exit(0);
                            }
                        }
