@@ -95,8 +95,7 @@ public class CircleCross {
                                System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
                                System.exit(0);
                            }
-                       }
-                       //sprawdzanie poziomo
+                           //sprawdzanie poziomo
                        counter = 1;
                        if (j <= tableArray[i].length-signsInLine) {
 
