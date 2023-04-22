@@ -8,11 +8,11 @@ public class AddTask {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Please add task description:");
-        String newTask = scanner.next() + ", ";
+        String newTask = scanner.nextLine() + ", ";
         System.out.println("Please add task due time:");
-        newTask += scanner.next() + ", ";
+        newTask += scanner.nextLine() + ", ";
         System.out.println("Is your task important: true/false");
-        newTask += scanner.next();
+        newTask += scanner.nextLine();
 
         tasks = Arrays.copyOf(tasks,tasks.length+1);
         tasks[tasks.length-1] = newTask.split(",");

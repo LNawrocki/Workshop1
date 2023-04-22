@@ -40,6 +40,7 @@ public class TaskManager {
                 case "list" -> ListTask.listTask(tasks);
                 case "exit" -> {
                     ExitTask.exitTask(tasks);
+                    System.out.println(ConsoleColors.RED_BOLD_BRIGHT + "See you next time!" + ConsoleColors.RESET);
                     System.exit(0);
                 }
                 default -> {
