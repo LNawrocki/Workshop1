@@ -3,7 +3,7 @@ package pl.coderslab;
 import java.util.Scanner;
 
 public class CircleCross {
-    public static void main (String[] args ) {
+    static void CircleCross() {
 
         // inicjalizacja tablicy do gry
 
@@ -21,7 +21,7 @@ public class CircleCross {
 
 
         //wygenerowanie nowej tablicy i wyświetlenie nowej planszy
-        CircleCrossTabInit.tabInit(tableArray, tableSize);
+        CircleCrossTableInit.tabInit(tableArray, tableSize);
 
         int playerIndex = 1;
         while (true) {

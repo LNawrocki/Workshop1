@@ -1,6 +1,6 @@
 package pl.coderslab;
 
-public class CircleCrossTabInit {
+public class CircleCrossTableInit {
     static void tabInit(String[][] tableArray, int tableSize) {
         int index = 0;
 
