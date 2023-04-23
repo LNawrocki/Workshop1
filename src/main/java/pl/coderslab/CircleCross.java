@@ -17,7 +17,7 @@ public class CircleCross {
 
         String[][] tableArray = new String[tableSize][tableSize];
 
-        int counter =0;
+
 
 
         //wygenerowanie nowej tablicy i wyświetlenie nowej planszy
@@ -34,126 +34,71 @@ public class CircleCross {
 
             System.out.println();
 
-            // Wstawienie znaku gracza do tablicy
-            for (int i = 0; i < tableSize; i++) {
-                for (int j = 0; j < tableSize; j++) {
-                    if (selectedIndex.equals(tableArray[i][j])) {
-                        if (playerIndex == 1) {
-                            tableArray[i][j] = "X";
-                        } else {
-                            tableArray[i][j] = "O";
+            if (selectedIndex.equals("exit")) {
+                System.out.println("Game interrupted by GAMER");
+                try {
+                    Thread.sleep(3000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return;
+            } else {
+                // Wstawienie znaku gracza do tablicy
+                for (int i = 0; i < tableSize; i++) {
+                    for (int j = 0; j < tableSize; j++) {
+                        if (selectedIndex.equals(tableArray[i][j])) {
+                            if (playerIndex == 1) {
+                                tableArray[i][j] = "X";
+                            } else {
+                                tableArray[i][j] = "O";
+                            }
                         }
                     }
                 }
-            }
 
-            for (int i = 0; i < tableSize; i++) {
-                for (int j = 0; j < tableSize; j++) {
-                    if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
-                        if (tableSize * tableSize < 1000 && tableSize * tableSize > 100) {
-                            System.out.print(" " + tableArray[i][j] + "   ");
-                        } else if (tableSize * tableSize <= 100 && tableSize * tableSize > 10) {
-                            System.out.print(" " + tableArray[i][j] + "  ");
+                for (int i = 0; i < tableSize; i++) {
+                    for (int j = 0; j < tableSize; j++) {
+                        if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
+                            if (tableSize * tableSize < 1000 && tableSize * tableSize > 100) {
+                                System.out.print(" " + tableArray[i][j] + "   ");
+                            } else if (tableSize * tableSize <= 100 && tableSize * tableSize > 10) {
+                                System.out.print(" " + tableArray[i][j] + "  ");
+                            } else {
+                                System.out.print(tableArray[i][j] + "  ");
+                            }
                         } else {
                             System.out.print(tableArray[i][j] + "  ");
                         }
-                    } else {
-                        System.out.print(tableArray[i][j] + "  ");
                     }
+                    System.out.println();
+                }
+
+                for (int i = 0; i <= 147; i++){
+                    System.out.print("W");
                 }
                 System.out.println();
-            }
-
-            for (int i = 0; i <= 147; i++){
-                System.out.print("W");
-            }
-            System.out.println();
-            for (int i = 0; i < tableSize; i++) {
-                for (int j = 0; j < tableSize; j++) {
-                    if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
-                        System.out.print(" " + tableArray[i][j] + " ");
-                    } else {
-                        System.out.print(" _ ");
+                for (int i = 0; i < tableSize; i++) {
+                    for (int j = 0; j < tableSize; j++) {
+                        if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
+                            if (tableArray[i][j].equals("X")) {
+                                System.out.print(ConsoleColors.RED_BOLD + " " + tableArray[i][j] + " " + ConsoleColors.RESET);
+                            } else if (tableArray[i][j].equals("O")) {
+                                System.out.print(ConsoleColors.GREEN_BOLD + " " + tableArray[i][j] + " " + ConsoleColors.RESET);
+                            }
+                        } else {
+                            System.out.print(" _ ");
+                        }
                     }
+                    System.out.println();
                 }
-                System.out.println();
-            }
 
-                int maxInLine = 0;
-                boolean test = true;
+               loopContinue = CircleCrossCheck.CcCheckResult(tableSize, tableArray, signsInLine, playerIndex, loopContinue);
 
-            for (int i = 0; i < tableSize; i++) {
-                for (int j = 0; j < tableSize; j++) {
-                    counter = 1;
-                   if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
-                       String signToCheck = tableArray[i][j];
-
-                       // sprawdzanie pionowo
-                       if (i <= tableArray.length-signsInLine) {
-
-                           for (int k = i; k < i + signsInLine-1; k++ ) {
-                               if (tableArray[i][j].equals(tableArray[k+1][j])) {
-                                   counter = counter + 1;
-                               }
-                           }
-//                           System.out.println(Integer.toString(counter));
-                           if (counter == signsInLine) {
-                               System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
-                               try {
-                                   Thread.sleep(5000);
-                               } catch (InterruptedException e) {
-                                   e.printStackTrace();
-                               }
-                               loopContinue = false;
-                           }
-                       }
-                           //sprawdzanie poziomo
-                       counter = 1;
-                       if (j <= tableArray[i].length-signsInLine) {
-
-                           for (int l = j; l < j + signsInLine-1; l++ ) {
-                               if (tableArray[i][j].equals(tableArray[i][l+1])) {
-                                   counter = counter + 1;
-                               }
-                           }
-
-                           if (counter == signsInLine) {
-                               System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
-                               try {
-                                   Thread.sleep(5000);
-                               } catch (InterruptedException e) {
-                                   e.printStackTrace();
-                               }
-                               loopContinue = false;
-                           }
-                       }
-                       //sprawdzanie po skosie
-                       counter = 1;
-                       if (i <= tableArray.length-signsInLine && j <= tableArray[i].length-signsInLine) {
-
-                           for (int m = 1; m < signsInLine; m++ ) {
-                               if (tableArray[i][j].equals(tableArray[i+m][j+m])) {
-                                   counter = counter + 1;
-                               }
-                           }
-
-                           if (counter == signsInLine) {
-                               System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
-                               try {
-                                   Thread.sleep(5000);
-                               } catch (InterruptedException e) {
-                                   e.printStackTrace();
-                               }
-                               loopContinue = false;
-                           }
-                       }
-                   }
+                if (playerIndex == 1) {
+                    playerIndex = 2;
+                } else {
+                    playerIndex = 1;
                 }
-            }
-            if (playerIndex == 1) {
-                playerIndex = 2;
-            } else {
-                playerIndex = 1;
             }
         }
     }

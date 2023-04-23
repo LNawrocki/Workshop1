@@ -30,7 +30,7 @@ public class CircleCrossTableInit {
         }
         for (int i = 0; i < tableSize; i++) {
             for (int j = 0; j < tableSize; j++) {
-                System.out.print(tableArray[i][j] + " ");
+                System.out.print(ConsoleColors.YELLOW_BOLD + tableArray[i][j] + " " + ConsoleColors.RESET);
             }
             System.out.println();
         }
