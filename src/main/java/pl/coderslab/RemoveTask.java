@@ -24,7 +24,7 @@ public class RemoveTask {
         } else if (input < 0) {
             throw new IllegalArgumentException();
         } else
-            return ArrayUtils.remove(tasks,input);
+            return tasks = ArrayUtils.remove(tasks,input);
     }
 }
 

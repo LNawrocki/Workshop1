@@ -24,7 +24,9 @@ public class CircleCross {
         CircleCrossTableInit.tabInit(tableArray, tableSize);
 
         int playerIndex = 1;
-        while (true) {
+        boolean loopContinue = true;
+
+        while (loopContinue) {
             System.out.println();
             Scanner sc = new Scanner(System.in);
             System.out.println("Gracz " + playerIndex + " - podaj numer pola?");
@@ -62,27 +64,31 @@ public class CircleCross {
                 System.out.println();
             }
 
-                System.out.println("----------------------------------");
-
-                for (int i = 0; i < tableSize; i++) {
-                    for (int j = 0; j < tableSize; j++) {
-                        if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
-                            System.out.print(" " + tableArray[i][j] + " ");
-                        } else {
-                            System.out.print(" _ ");
-                        }
+            for (int i = 0; i <= 147; i++){
+                System.out.print("W");
+            }
+            System.out.println();
+            for (int i = 0; i < tableSize; i++) {
+                for (int j = 0; j < tableSize; j++) {
+                    if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
+                        System.out.print(" " + tableArray[i][j] + " ");
+                    } else {
+                        System.out.print(" _ ");
                     }
-                    System.out.println();
                 }
+                System.out.println();
+            }
 
                 int maxInLine = 0;
                 boolean test = true;
+
             for (int i = 0; i < tableSize; i++) {
                 for (int j = 0; j < tableSize; j++) {
                     counter = 1;
                    if (tableArray[i][j].equals("X") || tableArray[i][j].equals("O")) {
                        String signToCheck = tableArray[i][j];
-// sprawdzanie pionowo
+
+                       // sprawdzanie pionowo
                        if (i <= tableArray.length-signsInLine) {
 
                            for (int k = i; k < i + signsInLine-1; k++ ) {
@@ -93,7 +99,12 @@ public class CircleCross {
 //                           System.out.println(Integer.toString(counter));
                            if (counter == signsInLine) {
                                System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
-                               System.exit(0);
+                               try {
+                                   Thread.sleep(5000);
+                               } catch (InterruptedException e) {
+                                   e.printStackTrace();
+                               }
+                               loopContinue = false;
                            }
                        }
                            //sprawdzanie poziomo
@@ -108,7 +119,12 @@ public class CircleCross {
 
                            if (counter == signsInLine) {
                                System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
-                               System.exit(0);
+                               try {
+                                   Thread.sleep(5000);
+                               } catch (InterruptedException e) {
+                                   e.printStackTrace();
+                               }
+                               loopContinue = false;
                            }
                        }
                        //sprawdzanie po skosie
@@ -123,7 +139,12 @@ public class CircleCross {
 
                            if (counter == signsInLine) {
                                System.out.println("The winner is Gracz: " + playerIndex + " ( " + signToCheck + " ) ");
-                               System.exit(0);
+                               try {
+                                   Thread.sleep(5000);
+                               } catch (InterruptedException e) {
+                                   e.printStackTrace();
+                               }
+                               loopContinue = false;
                            }
                        }
                    }
