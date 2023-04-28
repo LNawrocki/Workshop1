@@ -1,6 +1,5 @@
 package pl.coderslab;
 
-import java.util.Arrays;
 
 public class CircleCrossCheck {
     public static boolean CcCheckResult(int tableSize, String[][] tableArray, int signsInLine, int playerIndex, boolean loopContinue ) {
