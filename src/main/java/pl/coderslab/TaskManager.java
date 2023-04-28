@@ -6,11 +6,12 @@ import java.util.Scanner;
 public class TaskManager {
     public static void main(String[] args) {
 
-        menuListing.printMenu();
+//        menuListing.printMenu();
         Scanner scanner = new Scanner(System.in);
 
         String[][] tasks = Tasks.tasks();
-        // control print on beginning
+
+        // control print on beginning for preview
         for (String[] task : tasks) {
             System.out.println(Arrays.toString(task));
         }
@@ -26,7 +27,6 @@ public class TaskManager {
                     } catch (IndexOutOfBoundsException ex) {
                         System.out.println("Selected value out table range, select right value.");
                     }
-
                 }
                 case "list" -> ListTask.listTask(tasks);
                 case "play" -> CircleCross.CircleCross();
